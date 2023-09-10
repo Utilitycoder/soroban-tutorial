@@ -7,9 +7,11 @@
     "start": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "postinstall": "./soroban contract bindings typescript --network futurenet --contract-id $(cat ./contracts/incrementor/.soroban/hello-id) --output-dir node_modules/hello-soroban-client"
   },
   "dependencies": {
+    "@stellar/freighter-api": "^1.6.0",
     "astro": "^3.0.12"
   }
 }

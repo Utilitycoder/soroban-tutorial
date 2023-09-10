@@ -1,6 +1,20 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Card from '../components/Card.astro';
+import { Contract, networks } from 'hello-soroban-client';
+
+const greeter = new Contract({
+  ...networks.futurenet,
+  rpcUrl: 'https://rpc-futurenet.stellar.org', // from https://soroban.stellar.org/docs/reference/rpc#public-rpc-providers
+});
+
+let newGreeting;
+
+async function handleClick() {
+	newGreeting = await greeter.reset();
+}
+
+const greeting = await greeter.get();
 ---
 
 <Layout title="Welcome to Astro.">
@@ -33,7 +47,7 @@ import Card from '../components/Card.astro';
 				</linearGradient>
 			</defs>
 		</svg>
-		<h1>Welcome to <span class="text-gradient">Astro</span></h1>
+		<h1>This is the current increment value: <span class="text-gradient">{greeting}</span></h1>
 		<p class="instructions">
 			To get started, open the directory <code>src/pages</code> in your project.<br />
 			<strong>Code Challenge:</strong> Tweak the "Welcome to Astro" message above.
@@ -60,6 +74,7 @@ import Card from '../components/Card.astro';
 				body="Come say hi to our amazing Discord community. ❤️"
 			/>
 		</ul>
+		<button onclick="handleClick()">Click here to increment: {newGreeting}</button>
 	</main>
 </Layout>
 

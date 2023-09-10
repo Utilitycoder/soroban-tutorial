@@ -1,0 +1,3 @@
+cargo:rerun-if-changed=build/main.rs
+cargo:rustc-env=TYPENUM_BUILD_CONSTS=/Users/tm/sorofundme/target/release/build/typenum-14acb12085e66d94/out/consts.rs
+cargo:rustc-env=TYPENUM_BUILD_OP=/Users/tm/sorofundme/target/release/build/typenum-14acb12085e66d94/out/op.rs
